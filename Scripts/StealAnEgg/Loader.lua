@@ -1,8 +1,3 @@
--- ===============================================================
---   Universe Hub  |  Steal An Egg  |  Auto-Farm Script
---   Auto Steal · Auto Hatch · Anti-AFK · ESP
--- ===============================================================
-
 local Players        = game:GetService("Players")
 local RunService     = game:GetService("RunService")
 local TweenService   = game:GetService("TweenService")
