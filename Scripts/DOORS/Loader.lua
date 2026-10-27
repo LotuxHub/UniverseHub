@@ -8,12 +8,12 @@ local Workspace = workspace
 local LocalPlayer = Players.LocalPlayer
 local Camera = Workspace.CurrentCamera
 
-local LIB_URL = "https://raw.githubusercontent.com/LotuxHub/LotuxHub/refs/heads/main/Library/LotuxLibrary.lua"
+local LIB_URL = "https://raw.githubusercontent.com/UniverseHub/UniverseHub/refs/heads/main/Library/UniverseLibrary.lua"
 if not redzlib then
     local ok, lib = pcall(function() return loadstring(game:HttpGet(LIB_URL))() end)
     if ok and lib then redzlib = lib end
 end
-assert(redzlib, "[Lotux DOORS] Failed to load redzlib")
+assert(redzlib, "[Universe DOORS] Failed to load redzlib")
 
 local function notify(title, desc, dur, kind)
     pcall(function()
@@ -48,7 +48,7 @@ local function addHighlight(instance, color)
         return
     end
     local hl = Instance.new("Highlight")
-    hl.Name = "LotuxHighlight"
+    hl.Name = "UniverseHighlight"
     hl.FillColor = color
     hl.OutlineColor = Color3.new(1,1,1)
     hl.FillTransparency = 0.6
@@ -118,7 +118,7 @@ local WarningState = {enabled = false, conn = nil, gui = nil, label = nil, frame
 local function createWarningGui()
     if WarningState.gui then return end
     local g = Instance.new("ScreenGui")
-    g.Name = "LotuxDoorsWarning"
+    g.Name = "UniverseDoorsWarning"
     g.ResetOnSpawn = false
     g.IgnoreGuiInset = true
     g.DisplayOrder = 999
@@ -282,12 +282,12 @@ local function stopFullbright()
 end
 
 local IMG = "rbxassetid://111672166073808"
-local windows = redzlib:MakeWindow({Title = "Lotux Hub", SubTitle = "DOORS", SaveFolder = "Lotux Hub\\" .. LocalPlayer.Name})
+local windows = redzlib:MakeWindow({Title = "Universe Hub", SubTitle = "DOORS", SaveFolder = "Universe Hub\\" .. LocalPlayer.Name})
 
 local HomeTab = windows:MakeTab({Title = "Home", Icon = "home"})
-HomeTab:AddSection("Welcome To Lotux Hub | DOORS")
+HomeTab:AddSection("Welcome To Universe Hub | DOORS")
 HomeTab:AddSection("Discord Server")
-HomeTab:AddDiscordInvite({Title = "Lotux Hub", Desc = "Join our Discord!", Logo = IMG, Invite = "https://discord.gg/HkB97N772p"})
+HomeTab:AddDiscordInvite({Title = "Universe Hub", Desc = "Join our Discord!", Logo = IMG, Invite = "https://discord.gg/HkB97N772p"})
 
 local EspTab = windows:MakeTab({Title = "ESP", Icon = "eye"})
 EspTab:AddSection("Highlight ESP")
@@ -377,6 +377,6 @@ MiscTab:AddButton({Title = "Clear All ESP",
         notify("ESP", "Cleared", 2, "Info")
     end})
 
-notify("Lotux Hub", "DOORS loaded", 3, "Success")
-print("[Lotux Hub] DOORS loader loaded.")
+notify("Universe Hub", "DOORS loaded", 3, "Success")
+print("[Universe Hub] DOORS loader loaded.")
 return redzlib

@@ -11,12 +11,12 @@ local Workspace = workspace
 local LocalPlayer = Players.LocalPlayer
 local Camera = Workspace.CurrentCamera
 
-local LIB_URL = "https://raw.githubusercontent.com/LotuxHub/LotuxHub/refs/heads/main/Library/LotuxLibrary.lua"
+local LIB_URL = "https://raw.githubusercontent.com/UniverseHub/UniverseHub/refs/heads/main/Library/UniverseLibrary.lua"
 if not redzlib then
     local ok, lib = pcall(function() return loadstring(game:HttpGet(LIB_URL))() end)
     if ok and lib then redzlib = lib end
 end
-assert(redzlib, "[Lotux Rivals] Failed to load redzlib")
+assert(redzlib, "[Universe Rivals] Failed to load redzlib")
 
 local function notify(title, desc, dur, kind)
     pcall(function()
@@ -118,7 +118,7 @@ local AimbotState = {
     visibleCheck = false,
     teamCheck = true,
     target = nil,
-    bindName = "LotuxAimbotNearest",
+    bindName = "UniverseAimbotNearest",
     flickDuration = 0.04,
     flickHits = 0,
     flickActive = false,
@@ -304,7 +304,7 @@ local FOVCircle = {gui = nil, frame = nil, enabled = false, conn = nil}
 local function startFOVCircle()
     if not FOVCircle.gui then
         local g = Instance.new("ScreenGui")
-        g.Name = "LotuxFOV"; g.ResetOnSpawn = false; g.IgnoreGuiInset = true; g.DisplayOrder = 5; g.Parent = CoreGui
+        g.Name = "UniverseFOV"; g.ResetOnSpawn = false; g.IgnoreGuiInset = true; g.DisplayOrder = 5; g.Parent = CoreGui
         local frame = Instance.new("Frame")
         frame.AnchorPoint = Vector2.new(0.5, 0.5); frame.Position = UDim2.new(0.5, 0, 0.5, 0)
         frame.BackgroundTransparency = 1; frame.Parent = g
@@ -410,12 +410,12 @@ end
 
 local IMG = "rbxassetid://111672166073808"
 
-local windows = redzlib:MakeWindow({Title = "Lotux Hub", SubTitle = "Rivals", SaveFolder = "Lotux Hub\\" .. LocalPlayer.Name})
+local windows = redzlib:MakeWindow({Title = "Universe Hub", SubTitle = "Rivals", SaveFolder = "Universe Hub\\" .. LocalPlayer.Name})
 
 local HomeTab = windows:MakeTab({Title = "Home", Icon = "home"})
-HomeTab:AddSection("Welcome To Lotux Hub | Rivals")
+HomeTab:AddSection("Welcome To Universe Hub | Rivals")
 HomeTab:AddSection("Discord Server")
-HomeTab:AddDiscordInvite({Title = "Lotux Hub", Desc = "Join our Discord for updates!", Logo = IMG, Invite = "https://discord.gg/HkB97N772p"})
+HomeTab:AddDiscordInvite({Title = "Universe Hub", Desc = "Join our Discord for updates!", Logo = IMG, Invite = "https://discord.gg/HkB97N772p"})
 
 local EspTab = windows:MakeTab({Title = "ESP", Icon = "eye"})
 EspTab:AddSection("Player ESP")
@@ -519,6 +519,6 @@ MiscTab:AddToggle({Title = "Anti-AFK", Default = false, Flag = "riv_afk",
         end
     end})
 
-notify("Lotux Hub", "Rivals loaded", 3, "Success")
-print("[Lotux Hub] Rivals loader loaded.")
+notify("Universe Hub", "Rivals loaded", 3, "Success")
+print("[Universe Hub] Rivals loader loaded.")
 return redzlib

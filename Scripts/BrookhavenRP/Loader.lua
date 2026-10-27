@@ -8,12 +8,12 @@ local Workspace         = workspace
 local LocalPlayer       = Players.LocalPlayer
 local Mouse             = LocalPlayer:GetMouse()
 local IMG     = "rbxassetid://111672166073808" 
-local LIB_URL = "https://raw.githubusercontent.com/LotuxHub/LotuxHub/refs/heads/main/Library/LotuxLibrary.lua"
+local LIB_URL = "https://raw.githubusercontent.com/UniverseHub/UniverseHub/refs/heads/main/Library/UniverseLibrary.lua"
 if not redzlib then
     local ok, lib = pcall(function() return loadstring(game:HttpGet(LIB_URL))() end)
     if ok and lib then redzlib = lib end
 end
-assert(redzlib, "[Lotux Brookhaven] Nao foi possivel carregar redzlib")
+assert(redzlib, "[Universe Brookhaven] Nao foi possivel carregar redzlib")
 
 local function notify(title, desc, dur, kind)
     pcall(function()
@@ -25,7 +25,7 @@ local function notify(title, desc, dur, kind)
 end
 
 local IS_MOBILE = UIS.TouchEnabled and not UIS.MouseEnabled
-getgenv().LotuxMobile = IS_MOBILE
+getgenv().UniverseMobile = IS_MOBILE
 
 local RS = ReplicatedStorage
 local RemoteEvents = RS:WaitForChild("RemoteEvents", 10)
@@ -34,7 +34,7 @@ local function fireRemote(remoteName, ...)
     if not RemoteEvents then return false end
     local remote = RemoteEvents:FindFirstChild(remoteName)
     if not remote then
-        warn("[Lotux BH] Remote nao encontrado:", remoteName)
+        warn("[Universe BH] Remote nao encontrado:", remoteName)
         return false
     end
     local args = table.pack(...)
@@ -523,16 +523,16 @@ local TAG_LIST = {
 local IMG = "rbxassetid://111672166073808"
 
 local windows = redzlib:MakeWindow({
-    Title = "Lotux Hub",
+    Title = "Universe Hub",
     SubTitle = "Brookhaven",
-    SaveFolder = "Lotux Hub\\" .. LocalPlayer.Name,
+    SaveFolder = "Universe Hub\\" .. LocalPlayer.Name,
 })
 
 local HomeTab = windows:MakeTab({ Title = "Home", Icon = "home" })
-HomeTab:AddSection("Welcome To Lotux Hub | Brookhaven")
+HomeTab:AddSection("Welcome To Universe Hub | Brookhaven")
 HomeTab:AddSection("Discord Server")
 HomeTab:AddDiscordInvite({
-    Title = "Lotux Hub",
+    Title = "Universe Hub",
     Desc = "Join our Discord community for updates and support!",
     Logo = IMG,
     Invite = "https://discord.gg/HkB97N772p",
@@ -913,7 +913,7 @@ for _, tag in ipairs(TAG_LIST) do
     TagTab:AddButton({
         Title = tag.name,
         Callback = function()
-            fireRemote("Jobs", "GiveJobUIMenu", tag.id, "Lotux Hub", true)
+            fireRemote("Jobs", "GiveJobUIMenu", tag.id, "Universe Hub", true)
         end,
     })
 end
@@ -930,12 +930,12 @@ TagTab:AddButton({
     Callback = function()
         local id = getgenv().bh_custom_tag
         if id and id ~= "" then
-            fireRemote("Jobs", "GiveJobUIMenu", id, "Lotux Hub", true)
+            fireRemote("Jobs", "GiveJobUIMenu", id, "Universe Hub", true)
             notify("Tag", "Custom tag applied", 2, "Success")
         end
     end,
 })
 
-notify("Lotux Hub", IMG, "Brookhaven loaded", 3, "Success")
+notify("Universe Hub", IMG, "Brookhaven loaded", 3, "Success")
 
 return redzlib

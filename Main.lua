@@ -23,7 +23,7 @@ local UniverseIds = {
     Arsenal = 101417, 
 }
 
-local BASE_URL = "https://raw.githubusercontent.com/LotuxHub/LotuxHub/refs/heads/main/Scripts/"
+local BASE_URL = "https://raw.githubusercontent.com/UniverseHub/UniverseHub/refs/heads/main/Scripts/"
 
 local function getGameInfo()
     local id  = game.PlaceId
@@ -75,12 +75,12 @@ local SCRIPT_URL = GAME_INFO and GAME_INFO.url    or nil
 local STATUS_URL = GAME_INFO and GAME_INFO.status or nil
 
 local function criarPainelDesenvolvimento()
-    if PlayerGui:FindFirstChild("LotuxHubErro") then
-        PlayerGui.LotuxHubErro:Destroy()
+    if PlayerGui:FindFirstChild("UniverseHubErro") then
+        PlayerGui.UniverseHubErro:Destroy()
     end
 
     local ScreenGui = Instance.new("ScreenGui")
-    ScreenGui.Name = "LotuxHubErro"
+    ScreenGui.Name = "UniverseHubErro"
     ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     ScreenGui.ResetOnSpawn = false
     ScreenGui.Parent = PlayerGui
@@ -140,7 +140,7 @@ local function criarPainelDesenvolvimento()
     TituloHub.Size = UDim2.new(1, -60, 1, 0)
     TituloHub.Position = UDim2.new(0, 54, 0, 0)
     TituloHub.BackgroundTransparency = 1
-    TituloHub.Text = "Lotux Hub"
+    TituloHub.Text = "Universe Hub"
     TituloHub.TextColor3 = Color3.fromRGB(210, 210, 220)
     TituloHub.TextSize = 15
     TituloHub.Font = Enum.Font.GothamBold
@@ -161,7 +161,7 @@ local function criarPainelDesenvolvimento()
     MsgPrincipal.Size = UDim2.new(1, -40, 0, 36)
     MsgPrincipal.Position = UDim2.new(0, 20, 0, 68)
     MsgPrincipal.BackgroundTransparency = 1
-    MsgPrincipal.Text = "Não Foi Possível Executar o Lotux Hub"
+    MsgPrincipal.Text = "Não Foi Possível Executar o Universe Hub"
     MsgPrincipal.TextColor3 = Color3.fromRGB(240, 240, 245)
     MsgPrincipal.TextSize = 17
     MsgPrincipal.Font = Enum.Font.GothamBold
@@ -271,10 +271,10 @@ local function parseErro(nomeModulo, errMsg)
 end
 
 local function criarPainelErro(arquivo, linha, mensagem)
-    if PlayerGui:FindFirstChild("LotuxHubErro") then PlayerGui.LotuxHubErro:Destroy() end
+    if PlayerGui:FindFirstChild("UniverseHubErro") then PlayerGui.UniverseHubErro:Destroy() end
 
     local ScreenGui = Instance.new("ScreenGui")
-    ScreenGui.Name = "LotuxHubErro"
+    ScreenGui.Name = "UniverseHubErro"
     ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     ScreenGui.ResetOnSpawn = false
     ScreenGui.Parent = PlayerGui
@@ -334,7 +334,7 @@ local function criarPainelErro(arquivo, linha, mensagem)
     TituloHub.Size = UDim2.new(1, -60, 1, 0)
     TituloHub.Position = UDim2.new(0, 54, 0, 0)
     TituloHub.BackgroundTransparency = 1
-    TituloHub.Text = "Lotux Hub  —  Erro ao Carregar"
+    TituloHub.Text = "Universe Hub  —  Erro ao Carregar"
     TituloHub.TextColor3 = Color3.fromRGB(210, 210, 220)
     TituloHub.TextSize = 14
     TituloHub.Font = Enum.Font.GothamBold
@@ -464,7 +464,7 @@ local function criarPainelErro(arquivo, linha, mensagem)
 
     BotaoCopiar.MouseButton1Click:Connect(function()
         local erroCompleto = string.format(
-            "[LotuxHub] ERRO\nFile: %s\nLine: %s\nMessage: %s",
+            "[UniverseHub] ERRO\nFile: %s\nLine: %s\nMessage: %s",
             tostring(arquivo), tostring(linha), tostring(mensagem)
         )
         pcall(function() setclipboard(erroCompleto) end)
@@ -503,10 +503,10 @@ end
 
 local function criarPainelStatus(statusKey, mensagemExtra)
     local info = STATUS_INFO[statusKey] or STATUS_INFO.Down
-    if PlayerGui:FindFirstChild("LotuxHubErro") then PlayerGui.LotuxHubErro:Destroy() end
+    if PlayerGui:FindFirstChild("UniverseHubErro") then PlayerGui.UniverseHubErro:Destroy() end
 
     local ScreenGui = Instance.new("ScreenGui")
-    ScreenGui.Name = "LotuxHubErro"
+    ScreenGui.Name = "UniverseHubErro"
     ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     ScreenGui.ResetOnSpawn = false
     ScreenGui.Parent = PlayerGui
@@ -527,7 +527,7 @@ local function criarPainelStatus(statusKey, mensagemExtra)
     t.Size = UDim2.new(1, -40, 0, 30)
     t.Position = UDim2.new(0, 20, 0, 20)
     t.BackgroundTransparency = 1
-    t.Text = "Lotux Hub — " .. info.titulo
+    t.Text = "Universe Hub — " .. info.titulo
     t.TextColor3 = Color3.fromRGB(220, 220, 230)
     t.Font = Enum.Font.GothamBold
     t.TextSize = 16
@@ -584,5 +584,5 @@ end)
 if not ok then
     local arquivo, linha, msg = parseErro("Loader", tostring(err))
     criarPainelErro(arquivo, linha, msg)
-    warn("[LotuxHub] Erro fatal: " .. tostring(err))
+    warn("[UniverseHub] Erro fatal: " .. tostring(err))
 end

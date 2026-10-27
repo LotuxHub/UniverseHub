@@ -14,15 +14,15 @@ local LocalPlayer = Players.LocalPlayer
 local Alive = Workspace:FindFirstChild("Alive") or Workspace:WaitForChild("Alive")
 local Runtime = Workspace:FindFirstChild("Runtime") or Workspace:WaitForChild("Runtime")
 
-local Connections = getgenv().LotuxConnections or {}
-getgenv().LotuxConnections = Connections
+local Connections = getgenv().UniverseConnections or {}
+getgenv().UniverseConnections = Connections
 
-local LIB_URL = "https://raw.githubusercontent.com/LotuxHub/LotuxHub/refs/heads/main/Library/LotuxLibrary.lua"
+local LIB_URL = "https://raw.githubusercontent.com/UniverseHub/UniverseHub/refs/heads/main/Library/UniverseLibrary.lua"
 if not redzlib then
     local ok, lib = pcall(function() return loadstring(game:HttpGet(LIB_URL))() end)
     if ok and lib then redzlib = lib end
 end
-assert(redzlib, "[Lotux Bladeball] Failed to load redzlib")
+assert(redzlib, "[Universe Bladeball] Failed to load redzlib")
 
 local function notify(title, desc, dur, kind)
     pcall(function()
@@ -31,7 +31,7 @@ local function notify(title, desc, dur, kind)
 end
 
 local IS_MOBILE = UIS.TouchEnabled and not UIS.MouseEnabled
-getgenv().LotuxMobile = IS_MOBILE
+getgenv().UniverseMobile = IS_MOBILE
 
 local _PARRY_PATCH = {
     tokenFn = nil, tokenReady = false,
@@ -804,12 +804,12 @@ getgenv().AutoPlayJumpPercentage       = getgenv().AutoPlayJumpPercentage       
 update_divisor()
 
 local IMG = "rbxassetid://111672166073808"
-local windows = redzlib:MakeWindow({Title = "Lotux Hub", SubTitle = "Blade Ball v2", SaveFolder = "Lotux Hub\\" .. LocalPlayer.Name})
+local windows = redzlib:MakeWindow({Title = "Universe Hub", SubTitle = "Blade Ball v2", SaveFolder = "Universe Hub\\" .. LocalPlayer.Name})
 
 local HomeTab = windows:MakeTab({Title = "Home", Icon = "home"})
-HomeTab:AddSection("Welcome To Lotux Hub | Blade Ball")
+HomeTab:AddSection("Welcome To Universe Hub | Blade Ball")
 HomeTab:AddSection("Discord Server")
-HomeTab:AddDiscordInvite({Title = "Lotux Hub", Desc = "Join our Discord community!", Logo = IMG, Invite = "https://discord.gg/HkB97N772p"})
+HomeTab:AddDiscordInvite({Title = "Universe Hub", Desc = "Join our Discord community!", Logo = IMG, Invite = "https://discord.gg/HkB97N772p"})
 
 local MainTab = windows:MakeTab({Title = "Main", Icon = "sword"})
 MainTab:AddSection("Auto Parry")
@@ -1061,7 +1061,7 @@ local function getPlayerRank(p)
     local ok, r = pcall(function() return p:GetRankInGroup(GROUP_ID) end); return ok and r or 0
 end
 local function showModNotification(player)
-    local n = Instance.new("ScreenGui"); n.Name = "LotuxModNotif"; n.ResetOnSpawn = false; n.Parent = CoreGui
+    local n = Instance.new("ScreenGui"); n.Name = "UniverseModNotif"; n.ResetOnSpawn = false; n.Parent = CoreGui
     local f = Instance.new("Frame"); f.Size = UDim2.new(0,350,0,60); f.Position = UDim2.new(0.5,-175,0.2,0)
     f.BackgroundColor3 = Color3.fromRGB(200,50,50); f.BackgroundTransparency = 0.15; f.BorderSizePixel = 0; f.Parent = n
     local t = Instance.new("TextLabel"); t.Size = UDim2.new(1,0,1,0); t.BackgroundTransparency = 1
@@ -1168,11 +1168,11 @@ PlayerTab:AddToggle({Title = "Headless + Korblox", Default = false, Flag = "Play
             cleanup.conn = LocalPlayer.CharacterAdded:Connect(function(c)
                 task.wait(0.5); applyKorblox(c); applyHeadless(c)
             end)
-            getgenv()._LotuxCosmeticsCleanup = cleanup
+            getgenv()._UniverseCosmeticsCleanup = cleanup
         else
             if cleanup.conn then cleanup.conn:Disconnect() end
             if LocalPlayer.Character then restoreKorblox(LocalPlayer.Character); restoreHeadless(LocalPlayer.Character) end
-            getgenv()._LotuxCosmeticsCleanup = nil
+            getgenv()._UniverseCosmeticsCleanup = nil
         end
     end})
 
@@ -1363,7 +1363,7 @@ local function destroy_ball_stats()
 end
 local function create_ball_stats()
     if BallStatsState.gui then return end
-    local g = Instance.new("ScreenGui"); g.Name = "LotuxBallStats"; g.ResetOnSpawn = false
+    local g = Instance.new("ScreenGui"); g.Name = "UniverseBallStats"; g.ResetOnSpawn = false
     g.IgnoreGuiInset = true; g.DisplayOrder = 99; g.Parent = CoreGui
     local p = Instance.new("Frame"); p.Size = UDim2.new(0, 190, 0, 94); p.Position = UDim2.new(0, 20, 0.5, -47)
     p.BackgroundColor3 = Color3.fromRGB(12,12,12); p.BorderSizePixel = 0; p.Active = true; p.Parent = g
@@ -1425,7 +1425,7 @@ VisualTab:AddToggle({Title = "Visualiser", Default = false, Flag = "Visualiser",
         getgenv().Visualiser = state
         if state then
             if not vis_model then
-                vis_model = Instance.new("Model"); vis_model.Name = "LotuxVisualiser"; vis_model.Parent = Workspace
+                vis_model = Instance.new("Model"); vis_model.Name = "UniverseVisualiser"; vis_model.Parent = Workspace
                 for i = 1, 128 do
                     local e = Instance.new("Part")
                     e.Name = "Edge"..i; e.Anchored = true; e.CanCollide = false; e.CastShadow = false
@@ -1603,7 +1603,7 @@ VisualTab:AddToggle({Title = "FPS & Ping", Default = false, Flag = "StatsOverlay
     Callback = function(state)
         if state then
             if not StatsOverlay.gui then
-                local g = Instance.new("ScreenGui"); g.Name = "LotuxStats"; g.ResetOnSpawn = false
+                local g = Instance.new("ScreenGui"); g.Name = "UniverseStats"; g.ResetOnSpawn = false
                 g.IgnoreGuiInset = true; g.DisplayOrder = 99; g.Parent = CoreGui
                 local p = Instance.new("Frame"); p.Size = UDim2.new(0, 178, 0, 86); p.Position = UDim2.new(0, 20, 0.5, -43)
                 p.BackgroundColor3 = Color3.fromRGB(12,12,12); p.BorderSizePixel = 0; p.Active = true; p.Parent = g
@@ -1772,13 +1772,13 @@ MiscTab:AddToggle({Title = "Low Graphics", Default = false, Flag = "LowGraphics"
     Callback = function(state)
         if state then
             pcall(function()
-                getgenv()._lotuxQuality = settings().Rendering.QualityLevel
+                getgenv()._universeQuality = settings().Rendering.QualityLevel
                 settings().Rendering.QualityLevel = Enum.QualityLevel.Level01
             end)
             pcall(function() Lighting.GlobalShadows = false; Lighting.FogEnd = 9e9 end)
         else
             pcall(function()
-                if getgenv()._lotuxQuality then settings().Rendering.QualityLevel = getgenv()._lotuxQuality end
+                if getgenv()._universeQuality then settings().Rendering.QualityLevel = getgenv()._universeQuality end
             end)
             pcall(function() Lighting.GlobalShadows = true end)
         end
@@ -1803,23 +1803,23 @@ MiscTab:AddToggle({Title = "No Render", Default = false, Flag = "No_Render",
 
 local WorldTab = windows:MakeTab({Title = "World", Icon = "globe"})
 local function ensure_color_correction()
-    local cc = Lighting:FindFirstChild("LotuxColorCorrection")
+    local cc = Lighting:FindFirstChild("UniverseColorCorrection")
     if not cc then
-        cc = Instance.new("ColorCorrectionEffect"); cc.Name = "LotuxColorCorrection"; cc.Parent = Lighting
+        cc = Instance.new("ColorCorrectionEffect"); cc.Name = "UniverseColorCorrection"; cc.Parent = Lighting
     end
     return cc
 end
 local function apply_filter()
     if not getgenv().FilterEnabled then
-        local ca = Lighting:FindFirstChild("LotuxAtmosphere"); if ca then ca:Destroy() end
+        local ca = Lighting:FindFirstChild("UniverseAtmosphere"); if ca then ca:Destroy() end
         local cc = ensure_color_correction(); cc.TintColor = Color3.new(1,1,1); cc.Saturation = 0; return
     end
     if getgenv().AtmosphereEnabled then
-        local a = Lighting:FindFirstChild("LotuxAtmosphere")
-        if not a then a = Instance.new("Atmosphere"); a.Name = "LotuxAtmosphere"; a.Parent = Lighting end
+        local a = Lighting:FindFirstChild("UniverseAtmosphere")
+        if not a then a = Instance.new("Atmosphere"); a.Name = "UniverseAtmosphere"; a.Parent = Lighting end
         a.Density = getgenv().AtmosphereDensity or 0.5
     else
-        local a = Lighting:FindFirstChild("LotuxAtmosphere"); if a then a:Destroy() end
+        local a = Lighting:FindFirstChild("UniverseAtmosphere"); if a then a:Destroy() end
     end
     local cc = ensure_color_correction()
     cc.Saturation = getgenv().SaturationEnabled and (getgenv().SaturationLevel or 0) or 0
@@ -1888,13 +1888,13 @@ local function play_local_explosion(position)
     local name = getgenv().explosionFX; if not name or name == "" then return end
     local template = find_explosion_template(name); if not template then return end
     local clone = template:Clone()
-    clone.Name = "LotuxExplosion_" .. name
+    clone.Name = "UniverseExplosion_" .. name
     local parent = Workspace:FindFirstChild("Runtime") or Workspace
     local cf = CFrame.new(position or Vector3.zero)
     if clone:IsA("Model") then pcall(function() clone:PivotTo(cf) end)
     elseif clone:IsA("BasePart") then clone.CFrame = cf
     elseif clone:IsA("Folder") or clone:IsA("Attachment") then
-        local anchor = Instance.new("Part"); anchor.Name = "LotuxExplosionAnchor"
+        local anchor = Instance.new("Part"); anchor.Name = "UniverseExplosionAnchor"
         anchor.Anchored = true; anchor.CanCollide = false; anchor.CanQuery = false
         anchor.Transparency = 1; anchor.Size = Vector3.new(1,1,1); anchor.CFrame = cf
         if clone:IsA("Attachment") then
@@ -1952,7 +1952,7 @@ end
 local EmoteState = { catalog={}, by_name={}, favorites={}, destroying=false, wheel_conn=nil }
 local function emote_asset_id(v) return tostring(v or ""):match("%d+") end
 do
-    local FAV_FILE = "Lotux Hub/emote_favorites.json"
+    local FAV_FILE = "Universe Hub/emote_favorites.json"
     pcall(function()
         if isfile and isfile(FAV_FILE) then
             local decoded = HttpService:JSONDecode(readfile(FAV_FILE))
@@ -1965,7 +1965,7 @@ do
     end)
     EmoteState.save_favs = function()
         pcall(function()
-            if isfolder and makefolder and not isfolder("Lotux Hub") then makefolder("Lotux Hub") end
+            if isfolder and makefolder and not isfolder("Universe Hub") then makefolder("Universe Hub") end
             if writefile then
                 local list = {}
                 for n in pairs(EmoteState.favorites) do list[#list+1] = n end
@@ -2032,15 +2032,15 @@ local function apply_emote_wheel()
     local contents = get_wheel_contents(); if #contents == 0 then return end
     for _, content in ipairs(contents) do
         local sig = tostring(#EmoteState.catalog)
-        if content:GetAttribute("LotuxSignature") == sig then
+        if content:GetAttribute("UniverseSignature") == sig then
             local count = 0
             for _, c in ipairs(content:GetChildren()) do
-                if c:GetAttribute("LotuxEmoteCard") then count += 1 end
+                if c:GetAttribute("UniverseEmoteCard") then count += 1 end
             end
             if count >= #EmoteState.catalog then continue end
         end
         for _, c in ipairs(content:GetChildren()) do
-            if c:IsA("GuiObject") and c:GetAttribute("LotuxEmoteCard") then pcall(function() c:Destroy() end) end
+            if c:IsA("GuiObject") and c:GetAttribute("UniverseEmoteCard") then pcall(function() c:Destroy() end) end
         end
         local grid = content:FindFirstChildOfClass("UIGridLayout")
         if not grid then grid = Instance.new("UIGridLayout"); grid.Parent = content end
@@ -2049,7 +2049,7 @@ local function apply_emote_wheel()
         grid.HorizontalAlignment = Enum.HorizontalAlignment.Center; grid.FillDirectionMaxCells = 2
         for i, entry in ipairs(EmoteState.catalog) do
             local card = Instance.new("TextButton")
-            card.Name = "LotuxEmote_"..i; card:SetAttribute("LotuxEmoteCard", true)
+            card.Name = "UniverseEmote_"..i; card:SetAttribute("UniverseEmoteCard", true)
             card:SetAttribute("EmoteName", entry.Name)
             if entry.Animation then card:SetAttribute("AnimationId", entry.Animation.AnimationId) end
             card.LayoutOrder = i; card.Size = UDim2.fromOffset(118, 118)
@@ -2096,7 +2096,7 @@ local function apply_emote_wheel()
                 if getgenv().playEmote then pcall(getgenv().playEmote, entry.Name) end
             end)
         end
-        content:SetAttribute("LotuxSignature", sig)
+        content:SetAttribute("UniverseSignature", sig)
     end
 end
 getgenv().playEmote = function(name)
@@ -2187,7 +2187,7 @@ local function make_mobile_button(cfg)
     cfg = cfg or {}
     local id = cfg.id or ("btn"..tostring(math.random(100000, 999999)))
     if MobilePanels[id] then pcall(function() MobilePanels[id].gui:Destroy() end); MobilePanels[id] = nil end
-    local gui = Instance.new("ScreenGui"); gui.Name = "LotuxMobile_"..id; gui.ResetOnSpawn = false
+    local gui = Instance.new("ScreenGui"); gui.Name = "UniverseMobile_"..id; gui.ResetOnSpawn = false
     gui.IgnoreGuiInset = true; gui.DisplayOrder = 200
     gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling; gui.Parent = CoreGui
     local frame = Instance.new("Frame")
@@ -2299,7 +2299,7 @@ if IS_MOBILE then
         end})
 
     local curveGui = Instance.new("ScreenGui")
-    curveGui.Name = "LotuxCurveSelector"; curveGui.ResetOnSpawn = false
+    curveGui.Name = "UniverseCurveSelector"; curveGui.ResetOnSpawn = false
     curveGui.IgnoreGuiInset = true; curveGui.DisplayOrder = 210; curveGui.Parent = CoreGui
     local curveFab = Instance.new("TextButton", curveGui)
     curveFab.AnchorPoint = Vector2.new(1, 0); curveFab.Position = UDim2.new(1, -20, 0, 100)
@@ -2369,7 +2369,7 @@ if IS_MOBILE then
 
     task.defer(function()
         task.wait(0.5)
-        local rg = Instance.new("ScreenGui"); rg.Name = "LotuxReopen"; rg.ResetOnSpawn = false
+        local rg = Instance.new("ScreenGui"); rg.Name = "UniverseReopen"; rg.ResetOnSpawn = false
         rg.IgnoreGuiInset = true; rg.DisplayOrder = 150; rg.Parent = CoreGui
         local btn = Instance.new("TextButton", rg)
         btn.AnchorPoint = Vector2.new(1, 1); btn.Position = UDim2.new(1, -20, 1, -20)
@@ -2390,7 +2390,7 @@ if IS_MOBILE then
     end)
 end
 
-notify("Lotux Hub", "Blade Ball loaded", 3, "Success")
-print("[Lotux Hub] Bladeball loaded. Method:", _PARRY_PATCH.method or "unknown")
+notify("Universe Hub", "Blade Ball loaded", 3, "Success")
+print("[Universe Hub] Bladeball loaded. Method:", _PARRY_PATCH.method or "unknown")
 
 return redzlib

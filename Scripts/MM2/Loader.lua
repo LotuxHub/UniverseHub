@@ -10,12 +10,12 @@ local Workspace = workspace
 local LocalPlayer = Players.LocalPlayer
 local Camera = Workspace.CurrentCamera
 
-local LIB_URL = "https://raw.githubusercontent.com/LotuxHub/LotuxHub/refs/heads/main/Library/LotuxLibrary.lua"
+local LIB_URL = "https://raw.githubusercontent.com/UniverseHub/UniverseHub/refs/heads/main/Library/UniverseLibrary.lua"
 if not redzlib then
     local ok, lib = pcall(function() return loadstring(game:HttpGet(LIB_URL))() end)
     if ok and lib then redzlib = lib end
 end
-assert(redzlib, "[Lotux MM2] Failed to load redzlib")
+assert(redzlib, "[Universe MM2] Failed to load redzlib")
 
 local function notify(title, desc, dur, kind)
     pcall(function()
@@ -59,7 +59,7 @@ local function buildESP(player)
         if entry.highlight then entry.highlight:Destroy() end
         if entry.billboard then entry.billboard:Destroy() end
         local hl = Instance.new("Highlight")
-        hl.Name = "LotuxESP"
+        hl.Name = "UniverseESP"
         hl.Adornee = char
         hl.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
         hl.FillTransparency = 0.65
@@ -67,7 +67,7 @@ local function buildESP(player)
         hl.Parent = CoreGui
         entry.highlight = hl
         local bb = Instance.new("BillboardGui")
-        bb.Name = "LotuxESPName"
+        bb.Name = "UniverseESPName"
         bb.Adornee = head
         bb.Size = UDim2.new(0, 220, 0, 34)
         bb.StudsOffset = Vector3.new(0, 2.5, 0)
@@ -306,7 +306,7 @@ local FOVCircle = {gui = nil, frame = nil, enabled = false, conn = nil}
 local function startFOVCircle()
     if not FOVCircle.gui then
         local g = Instance.new("ScreenGui")
-        g.Name = "LotuxFOVCircle"
+        g.Name = "UniverseFOVCircle"
         g.ResetOnSpawn = false
         g.IgnoreGuiInset = true
         g.DisplayOrder = 5
@@ -838,12 +838,12 @@ end
 
 local IMG = "rbxassetid://111672166073808"
 
-local windows = redzlib:MakeWindow({Title = "Lotux Hub", SubTitle = "Murder Mystery 2", SaveFolder = "Lotux Hub\\" .. LocalPlayer.Name})
+local windows = redzlib:MakeWindow({Title = "Universe Hub", SubTitle = "Murder Mystery 2", SaveFolder = "Universe Hub\\" .. LocalPlayer.Name})
 
 local HomeTab = windows:MakeTab({Title = "Home", Icon = "home"})
-HomeTab:AddSection("Welcome To Lotux Hub | MM2")
+HomeTab:AddSection("Welcome To Universe Hub | MM2")
 HomeTab:AddSection("Discord Server")
-HomeTab:AddDiscordInvite({Title = "Lotux Hub", Desc = "Join our Discord for updates!", Logo = IMG, Invite = "https://discord.gg/HkB97N772p"})
+HomeTab:AddDiscordInvite({Title = "Universe Hub", Desc = "Join our Discord for updates!", Logo = IMG, Invite = "https://discord.gg/HkB97N772p"})
 
 HomeTab:AddSection("Emergency")
 HomeTab:AddButton({
@@ -1131,7 +1131,7 @@ MiscTab:AddButton({Title = "Server Hop",
         end)
     end})
 
-notify("Lotux Hub", "MM2 loaded", 3, "Success")
-print("[Lotux Hub] MM2 loader loaded.")
+notify("Universe Hub", "MM2 loaded", 3, "Success")
+print("[Universe Hub] MM2 loader loaded.")
 
 return redzlib

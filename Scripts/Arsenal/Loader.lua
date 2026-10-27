@@ -8,7 +8,7 @@ local Workspace = workspace
 local LocalPlayer = Players.LocalPlayer
 local Camera = Workspace.CurrentCamera
 
-local LIB_URL = "https://raw.githubusercontent.com/LotuxHub/LotuxHub/refs/heads/main/Library/Library.lua"
+local LIB_URL = "https://raw.githubusercontent.com/UniverseHub/UniverseHub/refs/heads/main/Library/Library.lua"
 if not redzlib then
     local ok, lib = pcall(function() return loadstring(game:HttpGet(LIB_URL))() end)
     if ok and lib then redzlib = lib end
@@ -193,7 +193,7 @@ local FovCircle = {gui = nil, frame = nil, enabled = false, conn = nil}
 local function createFovCircle()
     if FovCircle.gui then return end
     local g = Instance.new("ScreenGui")
-    g.Name = "LotuxFovCircle"
+    g.Name = "UniverseFovCircle"
     g.ResetOnSpawn = false
     g.IgnoreGuiInset = true
     g.DisplayOrder = 5
@@ -344,12 +344,12 @@ local function stopFullbright()
 end
 
 local IMG = "rbxassetid://111672166073808"
-local windows = redzlib:MakeWindow({Title = "Universe Hub", SubTitle = "Arsenal", SaveFolder = "Lotux Hub\\" .. LocalPlayer.Name})
+local windows = redzlib:MakeWindow({Title = "Universe Hub", SubTitle = "Arsenal", SaveFolder = "Universe Hub\\" .. LocalPlayer.Name})
 
 local HomeTab = windows:MakeTab({Title = "Home", Icon = "home"})
-HomeTab:AddSection("Welcome To Lotux Hub | Arsenal")
+HomeTab:AddSection("Welcome To Universe Hub | Arsenal")
 HomeTab:AddSection("Discord Server")
-HomeTab:AddDiscordInvite({Title = "Lotux Hub", Desc = "Join our Discord!", Logo = IMG, Invite = "https://discord.gg/HkB97N772p"})
+HomeTab:AddDiscordInvite({Title = "Universe Hub", Desc = "Join our Discord!", Logo = IMG, Invite = "https://discord.gg/HkB97N772p"})
 
 local AimTab = windows:MakeTab({Title = "Aimbot", Icon = "crosshair"})
 AimTab:AddSection("Aimbot Settings")
@@ -433,17 +433,17 @@ MiscTab:AddSection("Utility")
 MiscTab:AddToggle({Title = "Anti-AFK", Default = false, Flag = "ars_afk",
     Callback = function(state)
         if state then
-            if not getgenv()._lotuxArsAFK then
-                getgenv()._lotuxArsAFK = LocalPlayer.Idled:Connect(function()
+            if not getgenv()._universeArsAFK then
+                getgenv()._universeArsAFK = LocalPlayer.Idled:Connect(function()
                     VirtualUser:CaptureController()
                     VirtualUser:ClickButton2(Vector2.new())
                 end)
             end
         else
-            if getgenv()._lotuxArsAFK then getgenv()._lotuxArsAFK:Disconnect(); getgenv()._lotuxArsAFK = nil end
+            if getgenv()._universeArsAFK then getgenv()._universeArsAFK:Disconnect(); getgenv()._universeArsAFK = nil end
         end
     end})
 
-notify("Lotux Hub", "Arsenal loaded", 3, "Success")
-print("[Lotux Hub] Arsenal loader loaded.")
+notify("Universe Hub", "Arsenal loaded", 3, "Success")
+print("[Universe Hub] Arsenal loader loaded.")
 return redzlib

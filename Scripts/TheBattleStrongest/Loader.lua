@@ -9,12 +9,12 @@ local Workspace = workspace
 local LocalPlayer = Players.LocalPlayer
 local Camera = Workspace.CurrentCamera
 
-local LIB_URL = "https://raw.githubusercontent.com/LotuxHub/LotuxHub/refs/heads/main/Library/LotuxLibrary.lua"
+local LIB_URL = "https://raw.githubusercontent.com/UniverseHub/UniverseHub/refs/heads/main/Library/UniverseLibrary.lua"
 if not redzlib then
     local ok, lib = pcall(function() return loadstring(game:HttpGet(LIB_URL))() end)
     if ok and lib then redzlib = lib end
 end
-assert(redzlib, "[Lotux TSB] Failed to load redzlib")
+assert(redzlib, "[Universe TSB] Failed to load redzlib")
 
 local function notify(title, desc, dur, kind)
     pcall(function()
@@ -172,7 +172,7 @@ local FOVCircle = {gui = nil, frame = nil, enabled = false, conn = nil}
 local function startFOVCircle()
     if not FOVCircle.gui then
         local g = Instance.new("ScreenGui")
-        g.Name = "LotuxFOV"; g.ResetOnSpawn = false; g.IgnoreGuiInset = true; g.DisplayOrder = 5; g.Parent = CoreGui
+        g.Name = "UniverseFOV"; g.ResetOnSpawn = false; g.IgnoreGuiInset = true; g.DisplayOrder = 5; g.Parent = CoreGui
         local frame = Instance.new("Frame")
         frame.AnchorPoint = Vector2.new(0.5, 0.5); frame.Position = UDim2.new(0.5, 0, 0.5, 0); frame.BackgroundTransparency = 1; frame.Parent = g
         local circle = Instance.new("ImageLabel")
@@ -419,12 +419,12 @@ end
 
 local IMG = "rbxassetid://111672166073808"
 
-local windows = redzlib:MakeWindow({Title = "Lotux Hub", SubTitle = "The Strongest Battlegrounds", SaveFolder = "Lotux Hub\\" .. LocalPlayer.Name})
+local windows = redzlib:MakeWindow({Title = "Universe Hub", SubTitle = "The Strongest Battlegrounds", SaveFolder = "Universe Hub\\" .. LocalPlayer.Name})
 
 local HomeTab = windows:MakeTab({Title = "Home", Icon = "home"})
-HomeTab:AddSection("Welcome To Lotux Hub | TSB")
+HomeTab:AddSection("Welcome To Universe Hub | TSB")
 HomeTab:AddSection("Discord Server")
-HomeTab:AddDiscordInvite({Title = "Lotux Hub", Desc = "Join our Discord for updates!", Logo = IMG, Invite = "https://discord.gg/HkB97N772p"})
+HomeTab:AddDiscordInvite({Title = "Universe Hub", Desc = "Join our Discord for updates!", Logo = IMG, Invite = "https://discord.gg/HkB97N772p"})
 
 local AimTab = windows:MakeTab({Title = "Aimbot", Icon = "crosshair"})
 AimTab:AddSection("Aimbot")
@@ -571,7 +571,7 @@ MiscTab:AddButton({Title = "Rejoin Server",
     end})
 MiscTab:AddButton({Title = "Server Hop", Callback = function() serverHop() end})
 
-notify("Lotux Hub", "TSB loaded", 3, "Success")
-print("[Lotux Hub] The Strongest Battlegrounds loader loaded.")
+notify("Universe Hub", "TSB loaded", 3, "Success")
+print("[Universe Hub] The Strongest Battlegrounds loader loaded.")
 
 return redzlib
