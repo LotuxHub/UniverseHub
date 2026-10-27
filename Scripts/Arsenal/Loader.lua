@@ -8,12 +8,12 @@ local Workspace = workspace
 local LocalPlayer = Players.LocalPlayer
 local Camera = Workspace.CurrentCamera
 
-local LIB_URL = "https://raw.githubusercontent.com/LotuxHub/LotuxHub/refs/heads/main/Library/LotuxLibrary.lua"
+local LIB_URL = "https://raw.githubusercontent.com/LotuxHub/LotuxHub/refs/heads/main/Library/Library.lua"
 if not redzlib then
     local ok, lib = pcall(function() return loadstring(game:HttpGet(LIB_URL))() end)
     if ok and lib then redzlib = lib end
 end
-assert(redzlib, "[Lotux Arsenal] Failed to load redzlib")
+assert(redzlib, "Failed to load redzlib")
 
 local function notify(title, desc, dur, kind)
     pcall(function()
@@ -344,7 +344,7 @@ local function stopFullbright()
 end
 
 local IMG = "rbxassetid://111672166073808"
-local windows = redzlib:MakeWindow({Title = "Lotux Hub", SubTitle = "Arsenal", SaveFolder = "Lotux Hub\\" .. LocalPlayer.Name})
+local windows = redzlib:MakeWindow({Title = "Universe Hub", SubTitle = "Arsenal", SaveFolder = "Lotux Hub\\" .. LocalPlayer.Name})
 
 local HomeTab = windows:MakeTab({Title = "Home", Icon = "home"})
 HomeTab:AddSection("Welcome To Lotux Hub | Arsenal")
