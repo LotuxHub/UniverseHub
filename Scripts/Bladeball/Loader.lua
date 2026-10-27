@@ -17,7 +17,7 @@ local Runtime = Workspace:FindFirstChild("Runtime") or Workspace:WaitForChild("R
 local Connections = getgenv().UniverseConnections or {}
 getgenv().UniverseConnections = Connections
 
-local LIB_URL = "https://raw.githubusercontent.com/UniverseHub/UniverseHub/refs/heads/main/Library/UniverseLibrary.lua"
+local LIB_URL = "https://raw.githubusercontent.com/LotuxHub/UniverseHub/refs/heads/main/Library/Library.lua"
 if not redzlib then
     local ok, lib = pcall(function() return loadstring(game:HttpGet(LIB_URL))() end)
     if ok and lib then redzlib = lib end

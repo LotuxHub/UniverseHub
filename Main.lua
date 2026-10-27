@@ -23,7 +23,7 @@ local UniverseIds = {
     Arsenal = 101417, 
 }
 
-local BASE_URL = "https://raw.githubusercontent.com/UniverseHub/UniverseHub/refs/heads/main/Scripts/"
+local BASE_URL = "https://raw.githubusercontent.com/LotuxHub/UniverseHub/refs/heads/main/Scripts/"
 
 local function getGameInfo()
     local id  = game.PlaceId

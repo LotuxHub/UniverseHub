@@ -10,7 +10,7 @@ local Workspace = workspace
 local LocalPlayer = Players.LocalPlayer
 local Camera = Workspace.CurrentCamera
 
-local LIB_URL = "https://raw.githubusercontent.com/UniverseHub/UniverseHub/refs/heads/main/Library/UniverseLibrary.lua"
+local LIB_URL = "https://raw.githubusercontent.com/LotuxHub/UniverseHub/refs/heads/main/Library/Library.lua"
 if not redzlib then
     local ok, lib = pcall(function() return loadstring(game:HttpGet(LIB_URL))() end)
     if ok and lib then redzlib = lib end
